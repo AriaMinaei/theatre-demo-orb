@@ -4,144 +4,125 @@
       "staticOverrides": {
         "byObject": {
           "Shader": {
-            "uFrequency": 1.4000000000000001,
-            "uDensity": -0.10000000000000009,
-            "uOpacity": 0.1,
-            "uDeepPurple": 0.09999999999999987,
-            "uStrength": 0.6,
-            "uAmplitude": 5.799999999999999
+            "uniforms": {
+              "uOpacity": 0.07000000000000006,
+              "uDeepPurple": 0.74,
+              "uStrength": 0,
+              "uPhase": {
+                "y": -0.68,
+                "x": 0.31000000000000005
+              },
+              "uOscilation": {
+                "x": 0.45
+              },
+              "uBrightness": {
+                "z": -0.44000000000000006
+              }
+            }
           }
         }
       },
       "sequence": {
         "subUnitsPerUnit": 30,
-        "length": 20.87,
+        "length": 17.96,
         "type": "PositionalSequence",
         "tracksByObject": {
           "Shader": {
             "trackData": {
-              "blGYy-_Xdj": {
+              "3PxQSvjh3p": {
                 "type": "BasicKeyframedTrack",
                 "keyframes": [
                   {
-                    "id": "pTS4KgXx6j",
-                    "position": 6.133,
+                    "id": "e16aciALlV",
+                    "position": 0,
+                    "connectedRight": true,
+                    "handles": [0.5, 1, 0.2843671742666478, 0.4865621818057181],
+                    "value": -0.79
+                  },
+                  {
+                    "id": "d6k2-2T-1W",
+                    "position": 6.1,
                     "connectedRight": true,
                     "handles": [
-                      0.5,
-                      1,
-                      0.5,
-                      0
+                      0.5708172627767334, 0.865697033414258,
+                      0.18015213007390102, 0.6729768664823057
                     ],
-                    "value": 1.4000000000000001
+                    "value": 0.2151900075774802
+                  },
+                  {
+                    "id": "rqJ7aMmCQS",
+                    "position": 16.133,
+                    "connectedRight": true,
+                    "handles": [0.5658512258087013, 0.7328524662527981, 0.5, 0],
+                    "value": 1.82
                   }
                 ]
               },
-              "QTXNCO8agq": {
+              "6uDfIuKcAw": {
                 "type": "BasicKeyframedTrack",
                 "keyframes": [
                   {
-                    "id": "RL5bfPRHyP",
+                    "id": "wlsFOiNlnM",
                     "position": 0,
                     "connectedRight": true,
                     "handles": [
-                      0.5,
-                      1,
-                      0.011206371554357941,
-                      0.4782608695652174
+                      0.5, 1, 0.013192921416944392, 0.43103448275862066
                     ],
-                    "value": -0.08
+                    "value": 0.0368682602812744
                   },
                   {
-                    "id": "4I1lUZ9htb",
-                    "position": 3.767,
+                    "id": "w1LZUkiWtk",
+                    "position": 1.667,
                     "connectedRight": true,
-                    "handles": [
-                      0.5,
-                      1,
-                      0.5,
-                      0
-                    ],
-                    "value": 0.09999999999999999
+                    "handles": [0.5, 1, 0.5, 0],
+                    "value": 0.09581450653983359
                   }
                 ]
               },
-              "4xFWOVfvsm": {
+              "K330LUTh-4": {
                 "type": "BasicKeyframedTrack",
                 "keyframes": [
                   {
-                    "id": "CQAzkxmFZz",
-                    "position": 6,
+                    "id": "KxEo6_p9J7",
+                    "position": 6.033,
                     "connectedRight": true,
-                    "handles": [
-                      0.5,
-                      1,
-                      0.041873788508048904,
-                      0.7391304347826086
-                    ],
-                    "value": 5.799999999999999
+                    "handles": [0.5, 1, 0, 0.3793103448275862],
+                    "value": 0
                   },
                   {
-                    "id": "mtYyYZRbnA",
-                    "position": 8.067,
+                    "id": "-WRqO09XfQ",
+                    "position": 7.7,
                     "connectedRight": true,
-                    "handles": [
-                      0.5,
-                      1,
-                      0.5,
-                      0
-                    ],
-                    "value": 12.12
+                    "handles": [0.5, 1, 0.5, 0],
+                    "value": 0.66
                   }
                 ]
               },
-              "GBTlwesu-L": {
+              "kEqaWx-BNb": {
                 "type": "BasicKeyframedTrack",
                 "keyframes": [
                   {
-                    "id": "NLqa--YwFC",
-                    "position": 6,
+                    "id": "tuTAdyI2Jh",
+                    "position": 12.733,
                     "connectedRight": true,
-                    "handles": [
-                      0.5,
-                      1,
-                      0.5,
-                      0
-                    ],
-                    "value": -0.10000000000000009
+                    "handles": [0.5, 1, 0.5, 0],
+                    "value": 1
                   },
                   {
-                    "id": "fk43M69AiC",
-                    "position": 8.067,
+                    "id": "FLixNUGhPQ",
+                    "position": 16.167,
                     "connectedRight": true,
-                    "handles": [
-                      0.5,
-                      1,
-                      0.5,
-                      0
-                    ],
-                    "value": 1.14
-                  },
-                  {
-                    "id": "9oOV2zuz-R",
-                    "position": 12.233,
-                    "connectedRight": true,
-                    "handles": [
-                      0.5,
-                      1,
-                      0.5,
-                      0
-                    ],
-                    "value": 2.5599999999999996
+                    "handles": [0.5, 1, 0.5, 0],
+                    "value": 2.45
                   }
                 ]
               }
             },
             "trackIdByPropPath": {
-              "[\"uFrequency\"]": "blGYy-_Xdj",
-              "[\"uOpacity\"]": "QTXNCO8agq",
-              "[\"uAmplitude\"]": "4xFWOVfvsm",
-              "[\"uDensity\"]": "GBTlwesu-L"
+              "[\"transforms\",\"rotation\",\"y\"]": "3PxQSvjh3p",
+              "[\"uniforms\",\"uOpacity\"]": "6uDfIuKcAw",
+              "[\"uniforms\",\"uStrength\"]": "K330LUTh-4",
+              "[\"uniforms\",\"uDensity\"]": "kEqaWx-BNb"
             }
           }
         }
@@ -149,8 +130,5 @@
     }
   },
   "definitionVersion": "0.4.0",
-  "revisionHistory": [
-    "ChHG1cbPzYsMzaSy",
-    "ijPtQVyonyGquHIt"
-  ]
+  "revisionHistory": ["jBim4hiWqo9V6bv7", "start"]
 }

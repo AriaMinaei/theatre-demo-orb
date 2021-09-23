@@ -1,26 +1,29 @@
 // A fork of https://github.com/Faboolea/shaders-on-scroll/
-import "./styles.css";
-import * as THREE from "three";
-import { getProject, types as t } from "@theatre/core";
-import studio from "@theatre/studio";
-import audioUrl from "./music/audio.mp3";
-import state from "./state.json";
+import "./styles.css"
+import * as THREE from "three"
+import {getProject, types as t} from "@theatre/core"
+import studio from "@theatre/studio"
+// @ts-ignore
+import audioUrl from "./music/audio.mp3"
 
-studio.initialize();
+import state from "./state.json"
 
-const project = getProject("Demo", { state });
-const sheet = project.sheet("Scene");
+studio.initialize()
 
-sheet.sequence.attachAudio({ source: audioUrl });
+const project = getProject("Demo 2", {state})
+const sheet = project.sheet("Scene")
+sheet.sequence.attachAudio({source: audioUrl}).then(() => {
+  console.log("audio ready")
+})
 
 const nudgableNumber = (defaultValue) =>
-  t.number(defaultValue, { nudgeMultiplier: 0.02 });
+  t.number(defaultValue, {nudgeMultiplier: 0.01})
 
 const vector3D = {
   x: nudgableNumber(0),
   y: nudgableNumber(0),
-  z: nudgableNumber(0)
-};
+  z: nudgableNumber(0),
+}
 
 const obj = sheet.object("Shader", {
   uniforms: {
@@ -31,23 +34,32 @@ const obj = sheet.object("Shader", {
     uDeepPurple: nudgableNumber(1),
     uOpacity: nudgableNumber(0.1),
     uBrightness: {
-      // [0.1, 0.1, 0.9]
       x: nudgableNumber(0.1),
       y: nudgableNumber(0.1),
-      z: nudgableNumber(0.9)
-    }
+      z: nudgableNumber(0.9),
+    },
+    uContrast: {
+      x: nudgableNumber(0.3),
+      y: nudgableNumber(0.3),
+      z: nudgableNumber(0.3),
+    },
+    uOscilation: {
+      x: nudgableNumber(0.5),
+      y: nudgableNumber(0.5),
+      z: nudgableNumber(0.9),
+    },
+    uPhase: {
+      x: nudgableNumber(0.9),
+      y: nudgableNumber(0.1),
+      z: nudgableNumber(0.8),
+    },
   },
 
   transforms: {
     position: vector3D,
     rotation: vector3D,
-    scale: {
-      x: nudgableNumber(1),
-      y: nudgableNumber(1),
-      z: nudgableNumber(1)
-    }
-  }
-});
+  },
+})
 
 const vertexShader = /*glsl*/ `
 // GLSL textureless classic 3D noise "cnoise",
@@ -191,89 +203,94 @@ void main() {
   gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.);
 }
 
-`;
+`
 
 const fragmentShader = /*glsl*/ `
 uniform float uOpacity;
 uniform float uDeepPurple;
 uniform vec3 uBrightness;
+uniform vec3 uContrast;
+uniform vec3 uOscilation;
+uniform vec3 uPhase;
  
 varying float vDistortion;
 
 vec3 cosPalette(float t, vec3 a, vec3 b, vec3 c, vec3 d) {
   return a + b * cos(6.28318 * (c * t + d));
-  
 }     
  
 void main() {
   float distort = vDistortion * 3.;
 
-  // vec3 brightness = vec3(.1, .1, .9);
-  vec3 contrast = vec3(.3, .3, .3);
-  vec3 oscilation = vec3(.5, .5, .9);
-  vec3 phase = vec3(.9, .1, .8);
- 
-  vec3 color = cosPalette(distort, uBrightness, contrast, oscilation, phase);
+  vec3 color = cosPalette(distort, uBrightness, uContrast, uOscilation, uPhase);
   
   gl_FragColor = vec4(color, vDistortion);
-  gl_FragColor += vec4(min(uDeepPurple, 1.), 0., .5, min(uOpacity, 1.));
+  gl_FragColor += vec4(min(uDeepPurple, 1.), 0., .5, uOpacity);
 }
 
-`;
+`
 
 class Demo {
   constructor() {
     this.viewport = {
       width: window.innerWidth,
-      height: window.innerHeight
-    };
+      height: window.innerHeight,
+    }
 
-    this.scene = new THREE.Scene();
+    this.scene = new THREE.Scene()
 
     this.renderer = new THREE.WebGLRenderer({
       antialias: true,
-      alpha: true
-    });
+      alpha: true,
+    })
 
-    this.canvas = this.renderer.domElement;
+    this.canvas = this.renderer.domElement
 
     this.camera = new THREE.PerspectiveCamera(
       75,
       this.viewport.width / this.viewport.height,
       0.1,
       10
-    );
+    )
 
-    this.clock = new THREE.Clock();
+    this.clock = new THREE.Clock()
 
-    this.update = this.update.bind(this);
+    this.update = this.update.bind(this)
 
-    this.init();
+    this.init()
   }
 
   init() {
-    this.addCanvas();
-    this.addCamera();
-    this.addMesh();
+    this.addCanvas()
+    this.addCamera()
+    this.addMesh()
 
-    this.onResize();
-    this.update();
+    this.onResize()
+    this.update()
 
-    window.addEventListener("resize", this.onResize.bind(this));
+    window.addEventListener("resize", this.onResize.bind(this))
   }
 
   addCanvas() {
-    this.canvas.classList.add("webgl");
-    document.body.appendChild(this.canvas);
+    this.canvas.classList.add("webgl")
+    document.body.appendChild(this.canvas)
   }
 
   addCamera() {
-    this.camera.position.set(0, 0, 2.5);
-    this.scene.add(this.camera);
+    this.camera.position.set(0, 0, 2.5)
+    this.scene.add(this.camera)
   }
 
   addMesh() {
-    this.geometry = new THREE.IcosahedronGeometry(1, 64);
+    this.geometry = new THREE.IcosahedronGeometry(1, 128)
+
+    /**  @type {Record<string, any>}  */
+    const uniforms = {}
+    for (const [uniformName, uniformValue] of Object.entries(
+      obj.value.uniforms
+    )) {
+      uniforms[uniformName] = {value: uniformValue}
+    }
 
     this.material = new THREE.ShaderMaterial({
       wireframe: true,
@@ -281,76 +298,58 @@ class Demo {
       transparent: true,
       vertexShader,
       fragmentShader,
-      uniforms: {
-        uFrequency: { value: 0.0 },
-        uAmplitude: { value: 0.0 },
-        uDensity: { value: 0.0 },
-        uStrength: { value: 0.0 },
-        uDeepPurple: { value: 0.0 },
-        uOpacity: { value: 0.0 },
-        uBrightness: { value: [0.1, 0.1, 0.9] }
-      }
-    });
+      uniforms,
+    })
 
-    this.mesh = new THREE.Mesh(this.geometry, this.material);
-    console.log(this.mesh.rotation);
+    this.mesh = new THREE.Mesh(this.geometry, this.material)
+    console.log(this.mesh.rotation)
 
-    this.scene.add(this.mesh);
-
-    const uniforms = this.material.uniforms;
+    this.scene.add(this.mesh)
 
     obj.onValuesChange((v) => {
       for (const [transform, value] of Object.entries(v.transforms)) {
-        this.mesh[transform].set(value.x, value.y, value.z);
+        this.mesh[transform].set(value.x, value.y, value.z)
       }
 
       for (const [uniformName, uniformValue] of Object.entries(v.uniforms)) {
-        uniforms[uniformName].value = uniformValue;
+        uniforms[uniformName].value = uniformValue
       }
-    });
+    })
   }
 
   onResize() {
     this.viewport = {
       width: window.innerWidth,
-      height: window.innerHeight
-    };
-
-    if (this.viewport.width < this.viewport.height) {
-      this.mesh.scale.set(0.75, 0.75, 0.75);
-    } else {
-      this.mesh.scale.set(1, 1, 1);
+      height: window.innerHeight,
     }
 
-    this.camera.aspect = this.viewport.width / this.viewport.height;
-    this.camera.updateProjectionMatrix();
+    if (this.viewport.width < this.viewport.height) {
+      this.mesh.scale.set(0.75, 0.75, 0.75)
+    } else {
+      this.mesh.scale.set(1, 1, 1)
+    }
 
-    this.renderer.setSize(this.viewport.width, this.viewport.height);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    this.camera.aspect = this.viewport.width / this.viewport.height
+    this.camera.updateProjectionMatrix()
+
+    this.renderer.setSize(this.viewport.width, this.viewport.height)
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5))
   }
 
-  /**
-   * LOOP
-   */
   update() {
-    // const elapsedTime = this.clock.getElapsedTime();
+    this.render()
 
-    this.render();
-
-    window.requestAnimationFrame(this.update);
+    window.requestAnimationFrame(this.update)
   }
 
-  /**
-   * RENDER
-   */
   render() {
-    this.renderer.render(this.scene, this.camera);
+    this.renderer.render(this.scene, this.camera)
   }
 }
 
-new Demo();
+new Demo()
 
 console.log(
   "%c Made by ꜰᴀʙᴏᴏʟᴇᴀ → https://twitter.com/faboolea",
   "background: black; color: white; padding: 1ch 2ch; border-radius: 2rem;"
-);
+)

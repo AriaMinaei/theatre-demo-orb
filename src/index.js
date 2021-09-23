@@ -282,7 +282,7 @@ class Demo {
   }
 
   addMesh() {
-    this.geometry = new THREE.IcosahedronGeometry(1, 128)
+    this.geometry = new THREE.IcosahedronGeometry(1, 64)
 
     /**  @type {Record<string, any>}  */
     const uniforms = {}

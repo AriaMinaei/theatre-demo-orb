@@ -1,0 +1,156 @@
+{
+  "sheetsById": {
+    "Scene": {
+      "staticOverrides": {
+        "byObject": {
+          "Shader": {
+            "uFrequency": 1.4000000000000001,
+            "uDensity": -0.10000000000000009,
+            "uOpacity": 0.1,
+            "uDeepPurple": 0.09999999999999987,
+            "uStrength": 0.6,
+            "uAmplitude": 5.799999999999999
+          }
+        }
+      },
+      "sequence": {
+        "subUnitsPerUnit": 30,
+        "length": 20.87,
+        "type": "PositionalSequence",
+        "tracksByObject": {
+          "Shader": {
+            "trackData": {
+              "blGYy-_Xdj": {
+                "type": "BasicKeyframedTrack",
+                "keyframes": [
+                  {
+                    "id": "pTS4KgXx6j",
+                    "position": 6.133,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "value": 1.4000000000000001
+                  }
+                ]
+              },
+              "QTXNCO8agq": {
+                "type": "BasicKeyframedTrack",
+                "keyframes": [
+                  {
+                    "id": "RL5bfPRHyP",
+                    "position": 0,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.011206371554357941,
+                      0.4782608695652174
+                    ],
+                    "value": -0.08
+                  },
+                  {
+                    "id": "4I1lUZ9htb",
+                    "position": 3.767,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "value": 0.09999999999999999
+                  }
+                ]
+              },
+              "4xFWOVfvsm": {
+                "type": "BasicKeyframedTrack",
+                "keyframes": [
+                  {
+                    "id": "CQAzkxmFZz",
+                    "position": 6,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.041873788508048904,
+                      0.7391304347826086
+                    ],
+                    "value": 5.799999999999999
+                  },
+                  {
+                    "id": "mtYyYZRbnA",
+                    "position": 8.067,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "value": 12.12
+                  }
+                ]
+              },
+              "GBTlwesu-L": {
+                "type": "BasicKeyframedTrack",
+                "keyframes": [
+                  {
+                    "id": "NLqa--YwFC",
+                    "position": 6,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "value": -0.10000000000000009
+                  },
+                  {
+                    "id": "fk43M69AiC",
+                    "position": 8.067,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "value": 1.14
+                  },
+                  {
+                    "id": "9oOV2zuz-R",
+                    "position": 12.233,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "value": 2.5599999999999996
+                  }
+                ]
+              }
+            },
+            "trackIdByPropPath": {
+              "[\"uFrequency\"]": "blGYy-_Xdj",
+              "[\"uOpacity\"]": "QTXNCO8agq",
+              "[\"uAmplitude\"]": "4xFWOVfvsm",
+              "[\"uDensity\"]": "GBTlwesu-L"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitionVersion": "0.4.0",
+  "revisionHistory": [
+    "ChHG1cbPzYsMzaSy",
+    "ijPtQVyonyGquHIt"
+  ]
+}
